@@ -4,7 +4,9 @@
   "version": "0.0.1",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node webpack/serve.js --port=8080"
+    "start": "node webpack/serve.js --port=8080",
+    "build": "rm -r ./public && node webpack/build.js",
+    "release": "rm -r ./public && node webpack/build.js --production"
   },
   "license": "MIT",
   "dependencies": {
