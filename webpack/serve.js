@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./dev-config');
+var config = require('./config.dev');
 var argv = require('minimist')(process.argv.slice(2));
 
 var port = argv.port || argv.p || 3000;

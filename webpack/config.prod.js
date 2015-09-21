@@ -1,5 +1,5 @@
 var webpack = require('webpack');
-var mainConf = require('./config-main');
+var mainConf = require('./config');
 var merge = require('lodash').merge.bind(null, {});
 
 module.exports = merge(mainConf, {
