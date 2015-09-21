@@ -27,12 +27,13 @@ module.exports = {
 		loaders: [
 			{test: REGEX.JS,   loader: 'babel', exclude: REGEX.NODE_MODULES},
 			{test: REGEX.SSCC, loader: ExtractTextPlugin.extract('css!autoprefixer-loader?browsers=last 3 version!sass')}
+			// extract receives a string of loaders divided by '!' and applied from right to left.
 		]
 	},
 	plugins: [
 		new webpack.optimize.CommonsChunkPlugin({name: 'vendors', filename: 'js/vendors.js'}),
 		new ExtractTextPlugin('css/style.css'), // extracts css and put it to <output.path>/css/style.css
-		new HtmlPlugin({
+		new HtmlPlugin({ // gets the index.html from `context` dir as a template and create from it <output.path>/index.html
 			title: 'Test APP',
 			filename: 'index.html'
 		})
