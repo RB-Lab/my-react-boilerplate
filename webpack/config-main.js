@@ -37,7 +37,7 @@ module.exports = {
 			filename: 'index.html'
 		})
 	],
-	stats: {
+	stats: { // The stats actually used in build and dev-server scripts 
 		assets: true,
 		colors: true,
 		version: true,
