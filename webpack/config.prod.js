@@ -7,6 +7,7 @@ module.exports = merge(mainConf, {
 	plugins: mainConf.plugins.concat([
 		new webpack.optimize.DedupePlugin(),
 		new webpack.optimize.UglifyJsPlugin(),
+		new webpack.optimize.OccurenceOrderPlugin(),
 		new webpack.optimize.AggressiveMergingPlugin()
 	])
 });
