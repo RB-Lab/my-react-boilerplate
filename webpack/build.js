@@ -1,5 +1,5 @@
-var webpack = require('webpack');
-var argv = require('minimist')(process.argv.slice(2));
+var webpack = require('webpack');;
+var config = require('./config.build');
 
 var config = argv.production ? require('./config.prod') : require('./config.dev');
 

@@ -5,8 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node webpack/serve.js --port=8080",
-    "build": "rm -r ./public && node webpack/build.js",
-    "release": "rm -r ./public && node webpack/build.js --production"
+    "build": "if [ -d ./public ]; then rm -r ./public; fi && node webpack/build.js",
+    "release": "if [ -d ./public ]; then rm -r ./public; fi && node webpack/build.js --production"
   },
   "license": "MIT",
   "dependencies": {
