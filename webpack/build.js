@@ -1,5 +1,4 @@
-var webpack = require('webpack');;
-var config = require('./config.build');
+var webpack = require('webpack');
 
 var config = argv.production ? require('./config.prod') : require('./config.dev');
 
