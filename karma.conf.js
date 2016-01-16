@@ -1,59 +1,49 @@
-module.exports = function(config) {
-  config.set({
+/*eslint-disable no-var */
+var webpackConfig = require('./webpack/config');
 
-    basePath: '',
-
-    frameworks: ['mocha'],
-
-    files: [
-      // need to figure out how to get webpack to take a glob w/o duplicating
-      // stuff everywhere
-      'app/__tests__/main.js'
-    ],
-
-    exclude: [],
-
-    preprocessors: {
-      'app/__tests__/main.js': ['webpack']
-    },
-
-    webpack: {
-      cache: true,
-      module: {
-        loaders: [
-          {test: /\.js$/, loader: 'jsx-loader'}
-        ]
-      }
-    },
-
-    webpackServer: {
-      stats: {
-        colors: true
-      }
-    },
-
-    reporters: ['progress'],
-
-    port: 9876,
-
-    colors: true,
-
-    logLevel: config.LOG_INFO,
-
-    autoWatch: true,
-
-    browsers: ['Chrome'],
-
-    captureTimeout: 60000,
-
-    singleRun: false,
-
-    plugins: [
-      require("karma-mocha"),
-      require("karma-chrome-launcher"),
-      require("karma-firefox-launcher"),
-      require("karma-webpack")
-    ]
-  });
+module.exports = function conf(config) {
+	config.set({
+		frameworks: ['mocha', 'sinon-chai'],
+		plugins: [
+			require('karma-webpack'),
+			require('karma-sinon-chai'),
+			require('karma-mocha'),
+			require('karma-phantomjs-launcher'),
+			require('karma-mocha-reporter')
+		],
+		files: [
+			'./node_modules/phantomjs-polyfill/bind-polyfill.js',
+			'./node_modules/array.from/array-from.js',
+			'src/**/*.test.js'
+		],
+		preprocessors: {
+			'src/**/*.js': ['webpack']
+		},
+		webpack: {
+			module: {
+				loaders: [
+					{
+						test: /\.js/,
+						loader: 'babel',
+						query: {presets: ['es2015', 'stage-0', 'react'], plugins: ['rewire']},
+						exclude: /(node_modules)/
+					},
+					{test: /\.scss/, loader: 'css!sass'}
+				]
+			}
+		},
+		webpackMiddleware: {
+			stats: webpackConfig.stats
+		},
+		reporters: ['mocha'],
+		port: 9876,
+		colors: true,
+		logLevel: config.LOG_INFO,
+		autoWatch: true,
+		browsers: ['PhantomJS'],
+		singleRun: false,
+		concurrency: Infinity
+	});
 };
 
+/*eslint-enable no-vars*/
